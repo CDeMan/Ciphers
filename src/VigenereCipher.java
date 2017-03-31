@@ -36,16 +36,13 @@ public class VigenereCipher {
         String result = "";
         String tmp = "";
         int keyLength = key.length();
-        for (int i = 0; i < plainText.length(); i++) {
-            tmp += key.charAt(i % (keyLength));
-        }
-        key = tmp;
+
         int num;
         for (int i = 0; i < plainText.length(); i++) {
             if(plainText.charAt(i) == ' '){
                 result+=' ';
             }else {
-                num = ((plainText.charAt(i) - 'a') + (key.charAt(i) - 'a')) % 26;
+                num = ((plainText.charAt(i) - 'a') + (key.charAt(i % (keyLength)) - 'a')) % 26;
                 if (num <= -1) {
                     num = 26 + num;
                 }
